@@ -1,0 +1,51 @@
+---------------------------------------------------------------------------------------
+--
+--                      LoRa Remote Monitoring System 
+--
+-- Arduino IDE support for the STM32L15X LoRa Transceiver Board 
+--
+---------------------------------------------------------------------------------------
+
+These instructions are for installation of Arduino support using Ubuntu 20.04.4 LTS Linux.
+
+----
+Install Arduino IDE 1.8.13
+
+Install Arduino CLI
+        https://github.com/arduino/arduino-cli
+
+Install STM32duino,  Arduino core for STM32 MCUs
+        https://github.com/stm32duino
+
+Install STM32CubeIDE, Integrated Development Environment for STM32 
+        https://www.st.com/en/development-tools/stm32cubeide.html
+
+Install STM32CubeProg,  STM32CubeProgrammer software for all STM32 
+        https://www.st.com/en/development-tools/stm32cubeprog.html
+
+You will need GCC, GCC+ and gcclib.
+
+Note:  Updates for GCC, GCC+ for Linux and gcclib may be needed.
+----
+
+----
+-- Update boards.txt file
+----
+Change directory to:
+~/.arduino15/packages/STM32/hardware/stm32/1.9.0
+
+Edit 
+~/.arduino15/packages/STM32/hardware/stm32/1.9.0/boards.txt
+
+Add stm32L15x.boards.txt to boards.txt 
+
+----
+--  Add board variant
+----
+Change Directory to: 
+~/.arduino15/packages/STM32/hardware/stm32/1.9.0/variants
+
+Copy directory LORA_L152XX to this directory 
+----
+
+

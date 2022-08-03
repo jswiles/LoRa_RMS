@@ -1,0 +1,27 @@
+# LoRa Main Board
+LoRa.menu.pnum.LMB_L152CC=LMB LoRa Main Board (256kB)
+#LoRa.menu.pnum.LMB_L152CC.node="NODE_L152CC,LMB"
+LoRa.menu.pnum.LMB_L152CC.upload.maximum_size=262144
+LoRa.menu.pnum.LMB_L152CC.upload.maximum_data_size=32768
+LoRa.menu.pnum.LMB_L152CC.build.mcu=cortex-m3
+LoRa.menu.pnum.LMB_L152CC.build.board=LMB_L152CC
+LoRa.menu.pnum.LMB_L152CC.build.series=STM32L1xx
+LoRa.menu.pnum.LMB_L152CC.build.product_line=STM32L152xC
+LoRa.menu.pnum.LMB_L152CC.build.variant=LORA_L152XX
+LoRa.menu.pnum.LMB_L152CC.build.cmsis_lib_gcc=arm_cortexM3l_math
+
+# Upload menu
+LoRa.menu.upload_method.swdMethod=STM32CubeProgrammer (SWD)
+LoRa.menu.upload_method.swdMethod.upload.protocol=0
+LoRa.menu.upload_method.swdMethod.upload.options=-g
+LoRa.menu.upload_method.swdMethod.upload.tool=stm32CubeProg
+
+LoRa.menu.upload_method.serialMethod=STM32CubeProgrammer (Serial)
+LoRa.menu.upload_method.serialMethod.upload.protocol=1
+LoRa.menu.upload_method.serialMethod.upload.options={serial.port.file} -s
+LoRa.menu.upload_method.serialMethod.upload.tool=stm32CubeProg
+
+LoRa.menu.upload_method.dfuMethod=STM32CubeProgrammer (DFU)
+LoRa.menu.upload_method.dfuMethod.upload.protocol=2
+LoRa.menu.upload_method.dfuMethod.upload.options=-g
+LoRa.menu.upload_method.dfuMethod.upload.tool=stm32CubeProg

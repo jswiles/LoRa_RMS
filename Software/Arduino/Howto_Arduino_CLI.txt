@@ -1,0 +1,168 @@
+------------------------------------------------------------------------------------------------
+--
+-- How to use Arduino CLI to compile and upload programs
+--
+-- This shows how to use the CLI to compile and upload programs to a STM32 board.
+--
+-- The STM library files for Arduino must be added to the Arduino IDE
+------------------------------------------------------------------------------------------------
+---
+--- Find attched board(s)
+--- USB port must be connected
+---
+
+john@sol3:~/Arduino$ arduino-cli board listall
+
+Board Name                   FQBN                      
+3D printer boards            STM32:stm32:3dprinter     
+Discovery                    STM32:stm32:Disco         
+Electronic speed controllers STM32:stm32:ESC_board     
+Eval                         STM32:stm32:Eval          
+Garatronic/McHobby           STM32:stm32:Garatronic    
+Generic STM32F0 series       STM32:stm32:GenF0         
+Generic STM32F1 series       STM32:stm32:GenF1         
+Generic STM32F3 series       STM32:stm32:GenF3         
+Generic STM32F4 series       STM32:stm32:GenF4         
+Generic STM32H7 Series       STM32:stm32:GenH7         
+Generic STM32L0 series       STM32:stm32:GenL0         
+Generic flight controllers   STM32:stm32:Genericflight 
+LoRa boards                  STM32:stm32:LoRa          
+Midatronics boards           STM32:stm32:Midatronics   
+Nucleo-144                   STM32:stm32:Nucleo_144    
+Nucleo-32                    STM32:stm32:Nucleo_32     
+Nucleo-64                    STM32:stm32:Nucleo_64     
+STM32MP1 series coprocessor  STM32:stm32:STM32MP1      
+
+---
+--- Get board details
+---
+---
+
+john@sol3:~/Arduino/test_with_gps_device$ arduino-cli board details STM32:stm32:Nucleo_64
+
+Board name:            Nucleo-64                            
+FQBN:                  STM32:stm32:Nucleo_64                
+Board version:         1.9.0                                
+
+Package name:          STM32                                
+
+Platform architecture: stm32                                
+
+Option:                Board part number                          pnum                      
+                       Nucleo F030R8                         ✔    pnum=NUCLEO_F030R8        
+                       Nucleo F072RB                              pnum=NUCLEO_F072RB        
+                       Nucleo F091RC                              pnum=NUCLEO_F091RC        
+                       Nucleo F103RB                              pnum=NUCLEO_F103RB        
+                       Nucleo F302R8                              pnum=NUCLEO_F302R8        
+                       Nucleo F303RE                              pnum=NUCLEO_F303RE        
+                       Nucleo F401RE                              pnum=NUCLEO_F401RE        
+                       Nucleo F411RE                              pnum=NUCLEO_F411RE        
+                       Nucleo F446RE                              pnum=NUCLEO_F446RE        
+                       Nucleo G071RB                              pnum=NUCLEO_G071RB        
+                       Nucleo G431RB                              pnum=NUCLEO_G431RB        
+                       Nucleo G474RE                              pnum=NUCLEO_G474RE        
+                       Nucleo L053R8                              pnum=NUCLEO_L053R8        
+                       Nucleo L073RZ                              pnum=NUCLEO_L073RZ        
+                       Nucleo L152RE                              pnum=NUCLEO_L152RE        
+                       Nucleo L433RC-P                            pnum=NUCLEO_L433RC_P      
+                       Nucleo L452RE                              pnum=NUCLEO_L452RE        
+                       Nucleo L452RE-P                            pnum=NUCLEO_L452REP       
+                       Nucleo L476RG                              pnum=NUCLEO_L476RG        
+                       P-Nucleo WB55RG                            pnum=PNUCLEO_WB55RG       
+Option:                Upload method                              upload_method             
+                       Mass Storage                          ✔    upload_method=MassStorage 
+                       STM32CubeProgrammer (SWD)                  upload_method=swdMethod   
+                       STM32CubeProgrammer (Serial)               upload_method=serialMethod
+                       STM32CubeProgrammer (DFU)                  upload_method=dfuMethod   
+Option:                U(S)ART support                            xserial                   
+                       Enabled (generic 'Serial')            ✔    xserial=generic           
+                       Enabled (no generic 'Serial')              xserial=none              
+                       Disabled (No Serial support)               xserial=disabled          
+Option:                USB support (if available)                 usb                       
+                       None                                  ✔    usb=none                  
+                       CDC (generic 'Serial' supersede U(S)ART)      usb=CDCgen                
+                       CDC (no generic 'Serial')                  usb=CDC                   
+                       HID (keyboard and mouse)                   usb=HID                   
+Option:                USB speed (if available)                   xusb                      
+                       Low/Full Speed                        ✔    xusb=FS                   
+                       High Speed                                 xusb=HS                   
+                       High Speed in Full Speed mode              xusb=HSFS                 
+Option:                Optimize                                   opt                       
+                       Smallest (-Os default)                ✔    opt=osstd                 
+                       Smallest (-Os) with LTO                    opt=oslto                 
+                       Fast (-O1)                                 opt=o1std                 
+                       Fast (-O1) with LTO                        opt=o1lto                 
+                       Faster (-O2)                               opt=o2std                 
+                       Faster (-O2) with LTO                      opt=o2lto                 
+                       Fastest (-O3)                              opt=o3std                 
+                       Fastest (-O3) with LTO                     opt=o3lto                 
+                       Debug (-g)                                 opt=ogstd                 
+Option:                C Runtime Library                          rtlib                     
+                       Newlib Nano (default)                 ✔    rtlib=nano                
+                       Newlib Nano + Float Printf                 rtlib=nanofp              
+                       Newlib Nano + Float Scanf                  rtlib=nanofs              
+                       Newlib Nano + Float Printf/Scanf           rtlib=nanofps             
+                       Newlib Standard                            rtlib=full                
+Programmers:           Id                                    Name
+
+
+
+---
+--- Compile program   
+--- Use partnumber (pnum) to compile for correct target board
+--- 
+
+john@sol3:~/Arduino/test_with_gps_device$ arduino-cli compile --fqbn STM32:stm32:Nucleo_64:pnum=NUCLEO_L452RE test_with_gps_device
+Sketch uses 29040 bytes (5%) of program storage space. Maximum is 524288 bytes.
+
+Global variables use 1512 bytes (0%) of dynamic memory, leaving 162328 bytes for local variables. Maximum is 163840 bytes.
+
+
+---
+--- Upload program   
+--- Use partnumber (pnum) to compile for correct target board
+--- 
+john@sol3:~/Arduino/test_with_gps_device$ arduino-cli upload --port /dev/ttyACM0 --fqbn STM32:stm32:Nucleo_64:pnum=NUCLEO_L452RE test_with_gps_device
+
+Found 'NODE_L452RE' at '/media/john/NODE_L452RE'
+Copying /tmp/arduino-sketch-C9CED83E95721E6849B519F19FE0C06C/test_with_gps_device.ino.bin to /media/john/NODE_L452RE...
+
+---
+--- Use Putty for terminal support
+---
+
+-----------------------
+STM32 Nucleo 64 L452RE
+-----------------------
+arduino-cli compile --fqbn STM32:stm32:Nucleo_64:pnum=NUCLEO_L452RE <File>
+arduino-cli upload --port /dev/ttyACM0 --fqbn STM32:stm32:Nucleo_64:pnum=NUCLEO_L452RE  <File>
+
+-----------
+Arduino Uno
+-----------
+arduino-cli compile --fqbn arduino:avr:uno <File>
+arduino-cli upload --port /dev/ttyACM0 --fqbn arduino:avr:uno <File>
+
+-------------------------
+Arduino STM32:stm32:GenF1
+-------------------------
+
+Bluepill F103C8 64K
+-----------
+arduino-cli compile --fqbn  STM32:stm32:GenF1:pnum=BLUEPILL_F103C8 <File>
+arduino-cli upload --fqbn  STM32:stm32:GenF1:pnum=BLUEPILL_F103C8 upload_method=swdMethod 
+
+
+LoRaMainBoard 
+-----------
+arduino-cli compile --fqbn  STM32:stm32:LoRa:pnum=LMB_L152CC 
+arduino-cli upload --fqbn   STM32:stm32:LoRa:pnum=LMB_L152CC upload_method=swdMethod 
+
+
+---------- STM32 DEBUG -------------
+cd ~/st/stm32cubeide_1.6.1$ 
+
+
+./stm32cubeide
+
+
